@@ -26,18 +26,6 @@ def check_robots_txt(urls: list[str]) -> list[str]:
     return allowed_urls
 
 
-def normalize_urls(url):
-    normalized_url = (
-        url.replace("https://", "")
-        .replace("www.", "")
-        .replace("/", "_")
-        .replace("-", "_")
-        .replace(".", "_")
-    )
-
-    return normalized_url
-
-
 async def crawl_webpages(urls: list[str], prompt: str) -> CrawlResult:
     bm25_filter = BM25ContentFilter(user_query=prompt, bm25_threshold=1.2)
     md_generator = DefaultMarkdownGenerator(content_filter=bm25_filter)
