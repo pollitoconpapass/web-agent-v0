@@ -14,7 +14,7 @@ A powerful AI-powered web search agent that combines web crawling, vectorized da
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/pollitoconpapass/web-agent-v0.git
 cd web-search-agent-v0
 ```
 
@@ -41,6 +41,8 @@ streamlit run app.py
 2. Enter your query in the text area.
 3. Toggle the "Enable web search" option if you want to perform a web search.
 4. Click the "⚡️ Go" button to process your query.
+
+![alt text](public/image.png)
 
 ## Notes
 - The web crawler will fetch and process up to 10 web pages for each search.
