@@ -1,13 +1,16 @@
 
 import asyncio
 import streamlit as st
+from dotenv import load_dotenv
 from utils.llm_groq import llm_assistant
 from utils.web_search import get_web_urls, crawl_webpages
 from utils.vectorized_db import add_text_to_index, retrieve_context
 
 
+load_dotenv("./.env")
+
 async def run():
-    st.set_page_config(page_title="LLM Agent with Web Search")
+    st.set_page_config(page_title="Web Search Agent")
     st.title("Web Search Agent")
 
     prompt = st.text_area(
@@ -35,11 +38,11 @@ async def run():
             formatted_context = "\n".join([f"{result['url']}\n{result['text']}" for result in context_results])
 
             llm_response = llm_assistant(prompt, formatted_context)
-            st.write_stream(llm_response)
+            st.write(llm_response)
 
         else:
             llm_response = llm_assistant(prompt, "")
-            st.write_stream(llm_response)
+            st.write(llm_response)
 
 
 if __name__ == "__main__":
