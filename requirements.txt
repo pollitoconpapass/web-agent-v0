@@ -1,0 +1,7 @@
+Crawl4AI==0.4.248
+duckduckgo_search==7.5.5
+groq==0.20.0
+langchain==0.3.21
+ollama==0.4.7
+pinecone==6.0.2
+streamlit==1.41.1
