@@ -30,21 +30,32 @@ Format your response as follows:
 5. Ensure proper grammar, punctuation, and spelling throughout your answer.
 6. Do not mention what you received in context, just focus on answering based on the context.
 
-Important: Base your entire response solely on the information provided in the context. Do not include any external knowledge or assumptions not present in the given text.
+Important: Base your entire response solely on the information provided in the context and the conversation history. Do not include any external knowledge or assumptions not present in the given text.
 """
 
-def llm_assistant(query: str, context: str):
+def llm_assistant(query: str, context: str, history: list = None, max_history_length: int = 10) -> str:
+    if history is None:
+        history = []
+
+    history = history[-max_history_length:]
+
+    messages = [
+        {
+            "role": "system",
+            "content": SYSTEM_PROMPT
+        }
+    ]
+
+    for message in history:
+        messages.append(message)
+
+    messages.append({
+        "role": "user",
+        "content": f"Context: {context}\nQuestion: {query}"
+    })
+    
     chat_completion = groq_client.chat.completions.create(
-        messages=[
-            {
-                "role": "system",
-                "content": SYSTEM_PROMPT
-            },
-            {
-                "role": "user",
-                "content": f"Context: {context}\nQuestion: {query}"
-            }
-        ],
+        messages=messages,
         model="qwen-2.5-32b",
         temperature=0.5,
         stream=False
