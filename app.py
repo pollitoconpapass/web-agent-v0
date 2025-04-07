@@ -13,6 +13,9 @@ async def run():
     st.set_page_config(page_title="Web Search Agent")
     st.title("Web Search Agent")
 
+    if 'chat_history' not in st.session_state:
+        st.session_state.chat_history = []
+
     prompt = st.text_area(
         label="Put your query here",
         placeholder="Add your query...",
@@ -37,11 +40,17 @@ async def run():
             context_results = retrieve_context(prompt)
             formatted_context = "\n".join([f"{result['url']}\n{result['text']}" for result in context_results])
 
-            llm_response = llm_assistant(prompt, formatted_context)
+            st.session_state.chat_history.append({"role": "user", "content": prompt})
+            llm_response = llm_assistant(prompt, formatted_context, st.session_state.chat_history)
+            st.session_state.chat_history.append({"role": "assistant", "content": llm_response})
+
             st.write(llm_response)
 
         else:
+            st.session_state.chat_history.append({"role": "user", "content": prompt})
             llm_response = llm_assistant(prompt, "")
+            st.session_state.chat_history.append({"role": "assistant", "content": llm_response})
+
             st.write(llm_response)
 
 

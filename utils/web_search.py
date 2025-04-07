@@ -39,7 +39,7 @@ async def crawl_webpages(urls: list[str], prompt: str) -> CrawlResult:
         cache_mode=CacheMode.BYPASS,
         remove_overlay_elements=True,
         user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
-        page_timeout=20000,  # in ms: 20 seconds
+        page_timeout=60000,  # in ms: 60 seconds
     )
     browser_config = BrowserConfig(headless=True, text_mode=True, light_mode=True)
 
