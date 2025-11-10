@@ -56,7 +56,7 @@ def llm_assistant(query: str, context: str, history: list = None, max_history_le
     
     chat_completion = groq_client.chat.completions.create(
         messages=messages,
-        model="qwen-2.5-32b",
+        model="llama-3.3-70b-versatile",
         temperature=0.5,
         stream=False
     )

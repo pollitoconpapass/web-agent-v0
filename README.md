@@ -4,11 +4,14 @@ A powerful AI-powered web search agent that combines web crawling, vectorized da
 
 ## Features
 
-- 🌐 Web Search Integration: Uses DuckDuckGo for initial search results
+- 🌐 Web Search Integration: Uses SerpAPI for initial search results
 - 🤖 Web Crawler: Async web crawler with content filtering and markdown generation
 - 🧠 LLM Processing: Uses Groq LLM for processing queries and generating responses
 - 📊 Vectorized Database: Uses Pinecone for storing and retrieving contextual information
 - 🎨 User-Friendly Interface: Built with Streamlit for an intuitive web interface
+
+> [!IMPORTANT]
+> SerpAPI offers 250 monthly requests in the free tier.
 
 ## Setup
 
@@ -28,7 +31,9 @@ pip install -r requirements.txt
 GROQ_API_KEY="your_groq_api_key"
 PINECONE_API_KEY="your_pinecone_api_key"
 PINECONE_INDEX_NAME="your_pinecone_index_name"
+SERP_API_KEY="your_serp_api_key"
 ```
+Check out how to create an API key for: [Groq](https://console.groq.com/keys), [Pinecone](https://docs.pinecone.io/guides/projects/manage-api-keys), [SerpAPI](https://serpapi.com/pricing)
 
 4. Run the application:
 ```bash
@@ -56,6 +61,4 @@ streamlit run app.py
 - Groq
 - Pinecone
 - Crawl4AI
-- DuckDuckGo Search
-- Ollama
-- LangChain
+- SerpAPI
